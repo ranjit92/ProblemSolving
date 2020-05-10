@@ -213,7 +213,26 @@ public class Solution {
 		
 	}
 	 
-	 
+	public int numJewelsInStones(String J, String S) {
+
+		Map<Character, Integer> elementMap = new HashMap<>();
+
+		for (int i = 0; i < S.length(); i++) {
+			if (elementMap.containsKey(S.charAt(i))) {
+				int newCount = elementMap.get(S.charAt(i)) + 1;
+				elementMap.put(S.charAt(i), newCount);
+			} else
+				elementMap.put(S.charAt(i), 1);
+		}
+		int count = 0;
+		for(int i = 0; i < J.length(); i++) {
+			if(elementMap.containsKey(J.charAt(i))) {
+				count += elementMap.get(J.charAt(i));
+			}
+		}
+		
+		return count;
+	}
 	 
 	 
 	 
