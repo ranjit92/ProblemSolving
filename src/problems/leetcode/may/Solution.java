@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.TreeSet;
 
 public class Solution {
 
@@ -27,6 +28,11 @@ public class Solution {
 		System.out.println(checkStraightLine(array));
 		
 		System.out.println(isPerfectSquare(16));
+		int a = 2126753390;
+		
+		int[][] array1 = {{1,2}};
+		System.out.println(findJudge(4,array1));
+				
 
 	}
 
@@ -235,9 +241,83 @@ public class Solution {
 	}
 	 
 	 
+	/* The isBadVersion API is defined in the parent class VersionControl.
+    boolean isBadVersion(int version); 
+    Using binary search for O(log(n)) complexity as its a sorted array*/
+	public int firstBadVersion(int n) {
+
+		int left = 1;
+		int right = n;
+
+		while (left < right) {
+			int mid = left + (right - left) / 2;
+			if (isBadVersion(mid)) {
+				right = mid;
+			} else {
+				left = mid + 1;
+			}
+
+		}
+		return right;
+
+	}
+	
+	
 	 
-	 
-	 
+	private boolean isBadVersion(int mid) {
+		return false;
+	}
+
+	/**
+	 * 1 <= N <= 1000 
+	 * trust.length <= 10000 
+	 * trust[i] are all different 
+	 * trust[i][0] != trust[i][1] 
+	 * 1 <= trust[i][0], trust[i][1] <= N
+	 **/
+	public static int findJudge(int N, int[][] trust) {
+		if(N==1 && trust.length == 0)
+			return 1;
+		if(trust.length ==1)
+			return trust[0][1];
+		
+		Map<Integer, TreeSet<Integer>> trustMap = new HashMap<>();
+		
+		for(int i = 0; i < trust.length; i++) {
+			int a = trust[i][0];
+			int b = trust[i][1];
+			
+			if(trustMap.containsKey(b)) {
+				TreeSet<Integer> newTreeSet = trustMap.get(b);
+				newTreeSet.add(a);
+				trustMap.put(b, newTreeSet);
+			}
+			else {
+				TreeSet<Integer> newTreeSet = new TreeSet<>();
+				newTreeSet.add(a);
+				trustMap.put(b, newTreeSet);
+			}
+		}
+		
+		
+		int trueKey = -1;
+			for(int key : trustMap.keySet()) {
+				if(trustMap.get(key).size()==N-1) {
+					trueKey = key;
+					break;
+				}
+					
+			}
+			if(trueKey > 0) {
+				for(int key : trustMap.keySet()) {
+					if(trustMap.get(key).contains(trueKey))
+						trueKey = -1;
+				}
+				
+			}
+		
+		return trueKey;
+	}
 	 
 	 
 	 
