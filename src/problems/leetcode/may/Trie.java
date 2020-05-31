@@ -1,6 +1,28 @@
 package problems.leetcode.may;
 
 /**
+ * Implement Trie (Prefix Tree)
+ * 
+ * 
+ * Implement a trie with insert, search, and startsWith methods.
+ * 
+ * Example:
+ * 
+ * Trie trie = new Trie();
+ * 
+ * trie.insert("apple"); trie.search("apple"); // returns true
+ * trie.search("app"); // returns false trie.startsWith("app"); // returns true
+ * trie.insert("app"); trie.search("app"); // returns true
+ * 
+ * 
+ * 
+ * Note:
+ * 
+ * You may assume that all inputs are consist of lowercase letters a-z. All
+ * inputs are guaranteed to be non-empty strings.
+ * 
+ * 
+ * 
  * @author ranjit
  *
  *         <p>
@@ -43,39 +65,39 @@ public class Trie {
 		int length = word.length();
 		int index;
 		TrieNode trav = root;
-		
-		for(level = 0; level < length; level++) {
-			index = word.charAt(level)-'a';
-			if(null == trav.children[index]) {
+
+		for (level = 0; level < length; level++) {
+			index = word.charAt(level) - 'a';
+			if (null == trav.children[index]) {
 				trav.children[index] = new TrieNode();
 			}
 			trav = trav.children[index];
 		}
-		
+
 		trav.isEndOfWord = true;
-		
+
 	}
 
 	/** Returns if the word is in the trie. */
 	public boolean search(String word) {
-		
+
 		int level;
 		int length = word.length();
 		int index;
 		TrieNode trav = root;
-		
-		for(level = 0; level < length; level++) {
-			
-			index = word.charAt(level)-'a';
-			
-			if(trav.children[index] == null)
+
+		for (level = 0; level < length; level++) {
+
+			index = word.charAt(level) - 'a';
+
+			if (trav.children[index] == null)
 				return false;
-			
+
 			trav = trav.children[index];
 		}
-		
-		return (trav !=null && trav.isEndOfWord);
-		
+
+		return (trav != null && trav.isEndOfWord);
+
 	}
 
 	/**
@@ -86,27 +108,26 @@ public class Trie {
 		int length = prefix.length();
 		int index;
 		TrieNode trav = root;
-		
-		for(level = 0; level < length; level++) {
-			
-			index = prefix.charAt(level)-'a';
-			
-			if(trav.children[index] == null)
+
+		for (level = 0; level < length; level++) {
+
+			index = prefix.charAt(level) - 'a';
+
+			if (trav.children[index] == null)
 				return false;
-			
+
 			trav = trav.children[index];
 		}
-		
-		return (trav !=null);
+
+		return (trav != null);
 	}
-	
-	
+
 	public static void main(String[] args) {
 		Trie obj = new Trie();
-		  obj.insert("educ");
+		obj.insert("educ");
 //		  obj.insert("educat");
-		  System.out.println(obj.search("educ"));
-		  System.out.println(obj.startsWith("eduy"));
+		System.out.println(obj.search("educ"));
+		System.out.println(obj.startsWith("eduy"));
 //		  boolean param_3 = obj.startsWith(prefix);
 	}
 }

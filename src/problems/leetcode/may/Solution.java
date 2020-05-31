@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
@@ -63,18 +66,67 @@ public class Solution {
 //		System.out.println(removeKdigits2("5337", 2));
 		
 		int[] b = {5,-3,5};
-		System.out.println(maxSubarraySumCircular(b));
+//		System.out.println(maxSubarraySumCircular(b));
+		
+		
+		int[][] array1 = {{0,1,1,1},{1,1,1,1},{0,1,1,1}};
+		System.out.println(countSquares(array1));
+		
+		int[][] array2 = {{0,1,1,1},{1,1,1,1},{0,1,1,1}};
+		System.out.println(countMaxSquares(array2));
+		
+		
+		System.out.println(frequencySort("tree"));
+		
+		int[][] arrayA = {{0,2},{5,10},{13,23},{24,25}};
+		int[][] arrayB = {{1,5},{8,12},{15,24},{25,26}};
+		int[][] result = intervalIntersectionOptimize(arrayA, arrayB);
+		
+		for(int[] array : result)
+			System.out.println("["+array[0]+","+array[1] +"]");
+		
+		
+		System.out.println(maxUncrossedLines(new int[]{1,4,2}, new int[]{1,2,4}));
+		
+		
+		System.out.println(findMaxLength(new int[]{0,1,1}));
+		
+		
+		System.out.println(possibleBipartition(10, new int[][]{{4,7},{4,8},{2,8},{8,9},{1,6},{5,8},{1,2},{6,7},{3,10},{8,10},{1,5},{7,10},{1,10},{3,5},{3,6},{1,4},{3,9},{2,3},{1,9},{7,9},{2,7},{6,8},{5,7},{3,4}}));
 		
 		
 		
 		
-		System.out.println(checkInclusion("abcdxabcde", "abcdeabcdx"));
 		
+//		System.out.println(checkInclusion("abcdxabcde", "abcdeabcdx"));
 		
+		System.out.println(minDistance("horse", "ros"));
 				
 
 	}
 
+	/**
+	 * Majority Element
+	 * 
+	 * 
+	 * Given an array of size n, find the majority element. The majority element is
+	 * the element that appears more than ⌊ n/2 ⌋ times.
+	 * 
+	 * You may assume that the array is non-empty and the majority element always
+	 * exist in the array.
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: [3,2,3] Output: 3
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: [2,2,1,1,1,2,2] Output: 2
+	 * 
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static int majorityElement(int[] nums) {
 
 		int size = nums.length;
@@ -97,6 +149,28 @@ public class Solution {
 		return -1;
 	}
 
+	
+	
+	/**
+	 * First Unique Character in a String
+	 * 
+	 * 
+	 * Given a string, find the first non-repeating character in it and return it's
+	 * index. If it doesn't exist, return -1.
+	 * 
+	 * Examples:
+	 * 
+	 * s = "leetcode" return 0.
+	 * 
+	 * s = "loveleetcode", return 2.
+	 * 
+	 * Note: You may assume the string contain only lowercase letters.
+	 * 
+	 * 
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public static int firstUniqChar(String s) {
 		int size = s.length();
 		Map<Character, Integer> elementMap = new LinkedHashMap<>();
@@ -119,6 +193,11 @@ public class Solution {
 
 	}
 
+	
+	
+	
+	
+	
 	public static void decimalToBinary(int num) {
 
 		if (num > 1)
@@ -127,6 +206,40 @@ public class Solution {
 		System.out.print(num % 2);
 	}
 
+	/**
+	 * 
+	 * Number Complement
+	 * 
+	 * 
+	 * Given a positive integer num, output its complement number. The complement
+	 * strategy is to flip the bits of its binary representation.
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: num = 5 Output: 2 Explanation: The binary representation of 5 is 101
+	 * (no leading zero bits), and its complement is 010. So you need to output 2.
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: num = 1 Output: 0 Explanation: The binary representation of 1 is 1 (no
+	 * leading zero bits), and its complement is 0. So you need to output 0.
+	 * 
+	 * 
+	 * Constraints:
+	 * 
+	 * The given integer num is guaranteed to fit within the range of a 32-bit
+	 * signed integer. num >= 1 You could assume no leading zero bit in the
+	 * integer’s binary representation. This question is the same as 1009:
+	 * https://leetcode.com/problems/complement-of-base-10-integer/
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param num
+	 * @return
+	 */
 	public static String decimalToBinaryWithoutRecursion(int num) {
 
 		StringBuilder sb = new StringBuilder();
@@ -170,6 +283,41 @@ public class Solution {
 		return decimal;
 	}
 
+	/**
+	 * Ransom Note
+	 * 
+	 * 
+	 * Given an arbitrary ransom note string and another string containing letters
+	 * from all the magazines, write a function that will return true if the ransom
+	 * note can be constructed from the magazines ; otherwise, it will return false.
+	 * 
+	 * Each letter in the magazine string can only be used once in your ransom note.
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: ransomNote = "a", magazine = "b" Output: false
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: ransomNote = "aa", magazine = "ab" Output: false
+	 * 
+	 * Example 3:
+	 * 
+	 * Input: ransomNote = "aa", magazine = "aab" Output: true
+	 * 
+	 * 
+	 * Constraints:
+	 * 
+	 * You may assume that both strings contain only lowercase letters.
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param ransomNote
+	 * @param magazine
+	 * @return
+	 */
 	public static boolean canConstruct(String ransomNote, String magazine) {
 		Map<Character, Integer> magazineMap = new HashMap<>();
 		for (int i = 0; i < magazine.length(); i++) {
@@ -193,11 +341,32 @@ public class Solution {
 		return true;
 	}
 
-	/**How To Determine If Points Are Collinear In Coordinate Geometry?
-	 * Slope formula method to find that points are collinear.
-	 * 1. Two points always collinear
-	 * 2. three or more points are collinear even if slop of any two points are same like below
-	 * (y2-y1)/(x2-x1) == (yn-yn-1)/(xn-xn-1)
+	/**
+	 * Check If It Is a Straight Line
+	 * 
+	 * You are given an array coordinates, coordinates[i] = [x, y], where [x, y]
+	 * represents the coordinate of a point. Check if these points make a straight
+	 * line in the XY plane.
+	 * 
+	 * Input: coordinates = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]] Output: true
+	 * 
+	 * Input: coordinates = [[1,1],[2,2],[3,4],[4,5],[5,6],[7,7]] Output: false
+	 * 
+	 * Constraints:
+	 * 
+	 * 2 <= coordinates.length <= 1000 coordinates[i].length == 2 -10^4 <=
+	 * coordinates[i][0], coordinates[i][1] <= 10^4 coordinates contains no
+	 * duplicate point.
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * How To Determine If Points Are Collinear In Coordinate Geometry? Slope
+	 * formula method to find that points are collinear. 1. Two points always
+	 * collinear 2. three or more points are collinear even if slop of any two
+	 * points are same like below (y2-y1)/(x2-x1) == (yn-yn-1)/(xn-xn-1)
 	 * 
 	 * @param coordinates int[][] array
 	 * @return boolean
@@ -215,15 +384,17 @@ public class Solution {
 			x2 = coordinates[1][0];
 			y2 = coordinates[1][1];
 
-			if((x2 - x1) ==0) return false;
+			if ((x2 - x1) == 0)
+				return false;
 			g = (y2 - y1) / (x2 - x1);
 
 			for (int i = 2; i < coordinates.length; i++) {
 
 				int xnth = coordinates[i][0];
 				int ynth = coordinates[i][1];
-				
-				if((xnth - x2) == 0) return false;
+
+				if ((xnth - x2) == 0)
+					return false;
 				int tempG = (ynth - y2) / (xnth - x2);
 
 				if (tempG != g)
@@ -236,8 +407,8 @@ public class Solution {
 	}
 	
 	
-	
-	/**Reduce the loop overhead while checking unit place digit.
+	/**
+	 * Reduce the loop overhead while checking unit place digit.
 	 * If unit place digit either of (2,3,7,8) so its not a perfect square 
 	 * @param num
 	 * @return true/false
@@ -260,35 +431,95 @@ public class Solution {
 	
 	
 	
+	/**
+	 * Valid Perfect Square
+	 * 
+	 * 
+	 * Given a positive integer num, write a function which returns True if num is a
+	 * perfect square else False.
+	 * 
+	 * Follow up: Do not use any built-in library function such as sqrt.
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: num = 16 Output: true
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: num = 14 Output: false
+	 * 
+	 * Constraints:
+	 * 
+	 * 1 <= num <= 2^31 - 1
+	 * 
+	 * 
+	 * @param num
+	 * @return
+	 */
 	public static boolean isPerfectSquareWithBS(int num) {
 
 		long left = 1;
 		long right = num;
 
-		if(num == 1) return true;
+		if (num == 1)
+			return true;
 		while (left < right) {
-			
+
 			long mid = left + (right - left) / 2;
-			if ((mid*mid) == num) {
+			if ((mid * mid) == num) {
 				return true;
 			}
-			if((mid*mid) > num) {
-				right = mid-1;
-				
+			if ((mid * mid) > num) {
+				right = mid - 1;
+
 			} else {
 				left = mid + 1;
 			}
 
-			if(left == right) {
+			if (left == right) {
 				System.out.println(left);
 			}
 		}
-		if(left * left == num) return true;
+		if (left * left == num)
+			return true;
 		return false;
-		
+
 	}
 	
 	 
+	/**
+	 * Jewels and Stones
+	 * 
+	 * 
+	 * You're given strings J representing the types of stones that are jewels, and
+	 * S representing the stones you have. Each character in S is a type of stone
+	 * you have. You want to know how many of the stones you have are also jewels.
+	 * 
+	 * The letters in J are guaranteed distinct, and all characters in J and S are
+	 * letters. Letters are case sensitive, so "a" is considered a different type of
+	 * stone from "A".
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: J = "aA", S = "aAAbbbb" Output: 3
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: J = "z", S = "ZZ" Output: 0
+	 * 
+	 * 
+	 * Note:
+	 * 
+	 * S and J will consist of letters and have length at most 50. The characters in
+	 * J are distinct.
+	 * 
+	 * 
+	 * 
+	 * @param J
+	 * @param S
+	 * @return
+	 */
 	public int numJewelsInStones(String J, String S) {
 
 		Map<Character, Integer> elementMap = new HashMap<>();
@@ -301,19 +532,53 @@ public class Solution {
 				elementMap.put(S.charAt(i), 1);
 		}
 		int count = 0;
-		for(int i = 0; i < J.length(); i++) {
-			if(elementMap.containsKey(J.charAt(i))) {
+		for (int i = 0; i < J.length(); i++) {
+			if (elementMap.containsKey(J.charAt(i))) {
 				count += elementMap.get(J.charAt(i));
 			}
 		}
-		
+
 		return count;
 	}
 	 
 	 
-	/* The isBadVersion API is defined in the parent class VersionControl.
-    boolean isBadVersion(int version); 
-    Using binary search for O(log(n)) complexity as its a sorted array*/
+	/**
+	 * 
+	 * First Bad Version
+	 * 
+	 * You are a product manager and currently leading a team to develop a new
+	 * product. Unfortunately, the latest version of your product fails the quality
+	 * check. Since each version is developed based on the previous version, all the
+	 * versions after a bad version are also bad.
+	 * 
+	 * Suppose you have n versions [1, 2, ..., n] and you want to find out the first
+	 * bad one, which causes all the following ones to be bad.
+	 * 
+	 * You are given an API bool isBadVersion(version) which will return whether
+	 * version is bad. Implement a function to find the first bad version. You
+	 * should minimize the number of calls to the API.
+	 * 
+	 * 
+	 * 
+	 * Example:
+	 * 
+	 * Given n = 5, and version = 4 is the first bad version.
+	 * 
+	 * call isBadVersion(3) -> false call isBadVersion(5) -> true call
+	 * isBadVersion(4) -> true
+	 * 
+	 * Then 4 is the first bad version.
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * The isBadVersion API is defined in the parent class VersionControl. boolean
+	 * isBadVersion(int version); Using binary search for O(log(n)) complexity as
+	 * its a sorted array
+	 **/
 	public int firstBadVersion(int n) {
 
 		int left = 1;
@@ -339,99 +604,181 @@ public class Solution {
 	}
 
 	/**
-	 * 1 <= N <= 1000 
-	 * trust.length <= 10000 
-	 * trust[i] are all different 
-	 * trust[i][0] != trust[i][1] 
-	 * 1 <= trust[i][0], trust[i][1] <= N
+	 * Find the Town Judge
+	 * 
+	 * 
+	 * In a town, there are N people labelled from 1 to N. There is a rumor that one
+	 * of these people is secretly the town judge.
+	 * 
+	 * If the town judge exists, then:
+	 * 
+	 * The town judge trusts nobody. Everybody (except for the town judge) trusts
+	 * the town judge. There is exactly one person that satisfies properties 1 and
+	 * 2. You are given trust, an array of pairs trust[i] = [a, b] representing that
+	 * the person labelled a trusts the person labelled b.
+	 * 
+	 * If the town judge exists and can be identified, return the label of the town
+	 * judge. Otherwise, return -1.
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: N = 2, trust = [[1,2]] Output: 2
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: N = 3, trust = [[1,3],[2,3]] Output: 3
+	 * 
+	 * 
+	 * Example 3:
+	 * 
+	 * Input: N = 3, trust = [[1,3],[2,3],[3,1]] Output: -1
+	 * 
+	 * 
+	 * Example 4:
+	 * 
+	 * Input: N = 3, trust = [[1,2],[2,3]] Output: -1
+	 * 
+	 * 
+	 * Example 5:
+	 * 
+	 * Input: N = 4, trust = [[1,3],[1,4],[2,3],[2,4],[4,3]] Output: 3
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 1 <= N <= 1000 trust.length <= 10000 trust[i] are all different trust[i][0]
+	 * != trust[i][1] 1 <= trust[i][0], trust[i][1] <= N
 	 **/
 	public static int findJudge(int N, int[][] trust) {
-		if(N==1 && trust.length == 0)
+		if (N == 1 && trust.length == 0)
 			return 1;
-		if(trust.length ==1)
+		if (trust.length == 1)
 			return trust[0][1];
-		
+
 		Map<Integer, TreeSet<Integer>> trustMap = new HashMap<>();
-		
-		for(int i = 0; i < trust.length; i++) {
+
+		for (int i = 0; i < trust.length; i++) {
 			int a = trust[i][0];
 			int b = trust[i][1];
-			
-			if(trustMap.containsKey(b)) {
+
+			if (trustMap.containsKey(b)) {
 				TreeSet<Integer> newTreeSet = trustMap.get(b);
 				newTreeSet.add(a);
 				trustMap.put(b, newTreeSet);
-			}
-			else {
+			} else {
 				TreeSet<Integer> newTreeSet = new TreeSet<>();
 				newTreeSet.add(a);
 				trustMap.put(b, newTreeSet);
 			}
 		}
-		
-		
+
 		int trueKey = -1;
-			for(int key : trustMap.keySet()) {
-				if(trustMap.get(key).size()==N-1) {
-					trueKey = key;
-					break;
-				}
-					
+		for (int key : trustMap.keySet()) {
+			if (trustMap.get(key).size() == N - 1) {
+				trueKey = key;
+				break;
 			}
-			if(trueKey > 0) {
-				for(int key : trustMap.keySet()) {
-					if(trustMap.get(key).contains(trueKey))
-						trueKey = -1;
-				}
-				
+
+		}
+		if (trueKey > 0) {
+			for (int key : trustMap.keySet()) {
+				if (trustMap.get(key).contains(trueKey))
+					trueKey = -1;
 			}
-		
+
+		}
+
 		return trueKey;
 	}
 	 
 	 
 	
 	/**
+	 * Flood Fill
+	 * 
+	 * An image is represented by a 2-D array of integers, each integer representing
+	 * the pixel value of the image (from 0 to 65535).
+	 * 
+	 * Given a coordinate (sr, sc) representing the starting pixel (row and column)
+	 * of the flood fill, and a pixel value newColor, "flood fill" the image.
+	 * 
+	 * To perform a "flood fill", consider the starting pixel, plus any pixels
+	 * connected 4-directionally to the starting pixel of the same color as the
+	 * starting pixel, plus any pixels connected 4-directionally to those pixels
+	 * (also with the same color as the starting pixel), and so on. Replace the
+	 * color of all of the aforementioned pixels with the newColor.
+	 * 
+	 * At the end, return the modified image.
+	 * 
+	 * Example 1: 
+	 * 
+	 * Input: image = [[1,1,1],[1,1,0],[1,0,1]] sr = 1, sc = 1, newColor
+	 * = 2 Output: [[2,2,2],[2,2,0],[2,0,1]] Explanation: From the center of the
+	 * image (with position (sr, sc) = (1, 1)), all pixels connected by a path of
+	 * the same color as the starting pixel are colored with the new color. Note the
+	 * bottom corner is not colored 2, because it is not 4-directionally connected
+	 * to the starting pixel.
+	 * 
+	 * 
+	 * Note:
+	 * 
+	 * The length of image and image[0] will be in the range [1, 50]. The given
+	 * starting pixel will satisfy 0 <= sr < image.length and 0 <= sc <
+	 * image[0].length. The value of each color in image[i][j] and newColor will be
+	 * an integer in [0, 65535].
+	 * 
+	 * 
+	 * 
 	 * @param image
-	 * @param sr (stating row) 
-	 * @param sc (starting column)
-	 * @param newColor (new color to fill if matrix neighbor matches with stating pixel value)
+	 * @param sr       (stating row)
+	 * @param sc       (starting column)
+	 * @param newColor (new color to fill if matrix neighbor matches with stating
+	 *                 pixel value)
 	 * @return modified image
 	 */
 	public static int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
 
 		int h = image.length;
 		int l = image[0].length;
-		
-		boolean [][] visited = new boolean[h][l];
-		return DFSImage(image, sr,  sc, visited, newColor, image[sr][sc]);
+
+		boolean[][] visited = new boolean[h][l];
+		return DFSImage(image, sr, sc, visited, newColor, image[sr][sc]);
 
 	}
 
-	private static int[][] DFSImage(int[][] image, int sr, int sc, boolean[][] visited, int newColor, int startingPixel) {
+	private static int[][] DFSImage(int[][] image, int sr, int sc, boolean[][] visited, int newColor,
+			int startingPixel) {
 		int H = image.length;
-        int L = image[0].length;
-        
-        if (sr < 0 || sc < 0 || sr >= H || sc >= L || visited[sr][sc])
-            return image;
-		
-        
-        visited[sr][sc] = true;
-        
-        if(image[sr][sc]== startingPixel) {
-        	image[sr][sc]=newColor;
-        }
-        
-        
-        DFSImage(image, sr+ 1, sc,visited, newColor, startingPixel); // go down neighbor
-        DFSImage(image, sr- 1, sc,visited, newColor, startingPixel); //go up neighbor
-        DFSImage(image, sr, sc + 1,visited, newColor, startingPixel); //go right neighbor
-        DFSImage(image, sr, sc - 1,visited, newColor, startingPixel); // go left neighbor
-        
-        return image;
+		int L = image[0].length;
+
+		if (sr < 0 || sc < 0 || sr >= H || sc >= L || visited[sr][sc])
+			return image;
+
+		visited[sr][sc] = true;
+
+		if (image[sr][sc] == startingPixel) {
+			image[sr][sc] = newColor;
+		}
+
+		DFSImage(image, sr + 1, sc, visited, newColor, startingPixel); // go down neighbor
+		DFSImage(image, sr - 1, sc, visited, newColor, startingPixel); // go up neighbor
+		DFSImage(image, sr, sc + 1, visited, newColor, startingPixel); // go right neighbor
+		DFSImage(image, sr, sc - 1, visited, newColor, startingPixel); // go left neighbor
+
+		return image;
 	}
+	
+	
+	
+	
+	
 	 
-	  public int singleNonDuplicate(int[] nums) {
+	 
+	public int singleNonDuplicate(int[] nums) {
       	Map<Integer, Integer> intMap = new HashMap<>();
 		
 		for(int i: nums) {
@@ -447,61 +794,127 @@ public class Solution {
 		return -1;
   }
 	 
-//	  with O(log n) time and O(1) space
-	  public static  int singleNonDuplicateBS(int[] nums) {
-	      	
-		  if(nums.length == 1) return nums[0];
-		  int l = 0;
-	      	int h = nums.length-1;
-	      	
-	      	while(l < h) {
-	      		int mid = l+(h-l)/2;
-	      		
-	      		if(nums[mid] !=nums[mid+1] && nums[mid] !=nums[mid-1])
-	      			return nums[mid];
-	      		
-	      		if(l == mid-1 && h == mid+1) {
-	      			if(nums[mid] == nums[h])
-	      				return nums[l];
-	      			else
-	      				return nums[h];
-	      		}
-	      		
-	      		if((h-mid)%2==0) {
-	      			if(nums[mid] == nums[mid-1]) {
-	      				h = mid-2;
-	      			}else {
-	      				l = mid+2;
-	      			}
-	      		}
-	      		else {
-	      			if(nums[mid] == nums[mid-1]) {
-	      				l = mid + 1;
-	      			}else {
-	      				h = mid-1;
-	      			}
-	      		}
-	      	}
-	      	
-	      	return nums[l];
-	  }
+	
+	
+	
+	/**
+	 * Single Element in a Sorted Array
+	 * 
+	 * 
+	 * You are given a sorted array consisting of only integers where every element
+	 * appears exactly twice, except for one element which appears exactly once.
+	 * Find this single element that appears only once.
+	 * 
+	 * Follow up: Your solution should run in O(log n) time and O(1) space.
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: nums = [1,1,2,3,3,4,4,8,8] Output: 2
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: nums = [3,3,7,7,10,11,11] Output: 10
+	 * 
+	 * 
+	 * Constraints:
+	 * 
+	 * 1 <= nums.length <= 10^5 0 <= nums[i] <= 10^5
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param nums
+	 * @return
+	 * 
+	 * 
+	 *  with O(log n) time and O(1) space
+	 */ 
+	public static int singleNonDuplicateBS(int[] nums) {
+
+		if (nums.length == 1)
+			return nums[0];
+		int l = 0;
+		int h = nums.length - 1;
+
+		while (l < h) {
+			int mid = l + (h - l) / 2;
+
+			if (nums[mid] != nums[mid + 1] && nums[mid] != nums[mid - 1])
+				return nums[mid];
+
+			if (l == mid - 1 && h == mid + 1) {
+				if (nums[mid] == nums[h])
+					return nums[l];
+				else
+					return nums[h];
+			}
+
+			if ((h - mid) % 2 == 0) {
+				if (nums[mid] == nums[mid - 1]) {
+					h = mid - 2;
+				} else {
+					l = mid + 2;
+				}
+			} else {
+				if (nums[mid] == nums[mid - 1]) {
+					l = mid + 1;
+				} else {
+					h = mid - 1;
+				}
+			}
+		}
+
+		return nums[l];
+	}
 	  
 	  
 
-	
+	/**
+	 * Remove K Digits
+	 * 
+	 * 
+	 * Given a non-negative integer num represented as a string, remove k digits
+	 * from the number so that the new number is the smallest possible.
+	 * 
+	 * Note: The length of num is less than 10002 and will be ≥ k. The given num
+	 * does not contain any leading zero.
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: num = "1432219", k = 3 Output: "1219" Explanation: Remove the three
+	 * digits 4, 3, and 2 to form the new number 1219 which is the smallest.
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: num = "10200", k = 1 Output: "200" Explanation: Remove the leading 1
+	 * and the number is 200. Note that the output must not contain leading zeroes.
+	 * 
+	 * Example 3:
+	 * 
+	 * Input: num = "10", k = 2 Output: "0" Explanation: Remove all the digits from
+	 * the number and it is left with nothing which is 0.
+	 * 
+	 * 
+	 * 
+	 * @param num
+	 * @param k
+	 * @return
+	 */
 	public static String removeKdigitsStack(String num, int k) {
 		int l = num.length();
 
 //		corner case
 		if (num.length() == k)
 			return "0";
-		
-		
+
 		Stack<Character> stack = new Stack<>();
 
 		int i = 0;
 		while (i < l) {
-			while(!stack.isEmpty() && k > 0 && stack.peek() > num.charAt(i)) {
+			while (!stack.isEmpty() && k > 0 && stack.peek() > num.charAt(i)) {
 				stack.pop();
 				k--;
 			}
@@ -509,25 +922,25 @@ public class Solution {
 			i++;
 
 		}
-		
+
 //		corner case like 1111 or 5119
-		while(!stack.isEmpty() && k > 0) {
+		while (!stack.isEmpty() && k > 0) {
 			stack.pop();
 			k--;
 		}
 
 		StringBuilder sb = new StringBuilder();
-		while(!stack.isEmpty()) {
+		while (!stack.isEmpty()) {
 			sb.append(stack.pop());
 		}
-		
+
 		sb.reverse();
-		
+
 //		removing leading zero.
-		while(sb.length() > 1 && sb.charAt(0) == '0') {
-				sb.deleteCharAt(0);
+		while (sb.length() > 1 && sb.charAt(0) == '0') {
+			sb.deleteCharAt(0);
 		}
-		
+
 		return sb.toString();
 
 	}
@@ -560,43 +973,94 @@ public class Solution {
 	
 	
 	
+	/**
+	 * Maximum Sum Circular Subarray
+	 * 
+	 * 
+	 * Given a circular array C of integers represented by A, find the maximum
+	 * possible sum of a non-empty subarray of C.
+	 * 
+	 * Here, a circular array means the end of the array connects to the beginning
+	 * of the array. (Formally, C[i] = A[i] when 0 <= i < A.length, and
+	 * C[i+A.length] = C[i] when i >= 0.)
+	 * 
+	 * Also, a subarray may only include each element of the fixed buffer A at most
+	 * once. (Formally, for a subarray C[i], C[i+1], ..., C[j], there does not exist
+	 * i <= k1, k2 <= j with k1 % A.length = k2 % A.length.)
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: [1,-2,3,-2] Output: 3 Explanation: Subarray [3] has maximum sum 3
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: [5,-3,5] Output: 10 Explanation: Subarray [5,5] has maximum sum 5 + 5
+	 * = 10
+	 * 
+	 * 
+	 * Example 3:
+	 * 
+	 * Input: [3,-1,2,-1] Output: 4 Explanation: Subarray [2,-1,3] has maximum sum 2
+	 * + (-1) + 3 = 4
+	 * 
+	 * 
+	 * Example 4:
+	 * 
+	 * Input: [3,-2,2,-3] Output: 3 Explanation: Subarray [3] and [3,-2,2] both have
+	 * maximum sum 3
+	 * 
+	 * 
+	 * 
+	 * Example 5:
+	 * 
+	 * Input: [-2,-3,-1] Output: -1 Explanation: Subarray [-1] has maximum sum -1
+	 * 
+	 * Note:
+	 * 
+	 * -30000 <= A[i] <= 30000 1 <= A.length <= 30000
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param A
+	 * @return
+	 */
 	public static int maxSubarraySumCircular(int[] A) {
 		int min = Integer.MIN_VALUE;
 		boolean isPositive = false;
-		
-		
+
 		/*
 		 * We will also handle a special case. If all the numbers are negative, then we
 		 * will return the smallest negative number from below for loop.
 		 */
-		
-		for(int i = 0; i < A.length; i++) {
-			if(A[i] > 0) {
+
+		for (int i = 0; i < A.length; i++) {
+			if (A[i] > 0) {
 				isPositive = true;
 				break;
 			}
-			
-			if(A[i] > min) {
+
+			if (A[i] > min) {
 				min = A[i];
 			}
 		}
-		
-		if(!isPositive)
+
+		if (!isPositive)
 			return min;
-		
-		
-		
+
 		int maxSumOrginal = kadane(A);
 		int totalSum = Arrays.stream(A).sum();
-		
-		for(int i = 0; i < A.length; i++) {
-			A[i] = - A[i];
+
+		for (int i = 0; i < A.length; i++) {
+			A[i] = -A[i];
 		}
-				
+
 		int negativeMaxSum = kadane(A);
-		
+
 		return Math.max(maxSumOrginal, totalSum - (-negativeMaxSum));
-		
+
 	}
 	
 	public static int kadane(int[] A) {
@@ -622,88 +1086,164 @@ public class Solution {
 	}
 	
 	
-	
-//	Sliding window approach using hash table
+	/**
+	 * Find All Anagrams in a String
+	 * 
+	 * 
+	 * Given a string s and a non-empty string p, find all the start indices of p's
+	 * anagrams in s.
+	 * 
+	 * Strings consists of lowercase English letters only and the length of both
+	 * strings s and p will not be larger than 20,100.
+	 * 
+	 * The order of output does not matter.
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: s: "cbaebabacd" p: "abc"
+	 * 
+	 * Output: [0, 6]
+	 * 
+	 * Explanation: The substring with start index = 0 is "cba", which is an anagram
+	 * of "abc". The substring with start index = 6 is "bac", which is an anagram of
+	 * "abc".
+	 * 
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: s: "abab" p: "ab"
+	 * 
+	 * Output: [0, 1, 2]
+	 * 
+	 * Explanation: The substring with start index = 0 is "ab", which is an anagram
+	 * of "ab". The substring with start index = 1 is "ba", which is an anagram of
+	 * "ab". The substring with start index = 2 is "ab", which is an anagram of
+	 * "ab".
+	 * 
+	 * 
+	 * 
+	 * @param s
+	 * @param p
+	 * @return
+	 * 
+	 * 
+	 *         Sliding window approach using hash table
+	 */
 	public List<Integer> findAnagrams(String s, String p) {
 
 		List<Integer> result = new ArrayList<>();
-		
-		if( s == null || s.isEmpty()) return result;
-		
+
+		if (s == null || s.isEmpty())
+			return result;
+
 		Map<Character, Integer> charMap = new HashMap<>();
-		for(char c : p.toCharArray()) {
-			charMap.put(c, charMap.getOrDefault(c, 0)+1);
+		for (char c : p.toCharArray()) {
+			charMap.put(c, charMap.getOrDefault(c, 0) + 1);
 		}
-		
+
 //		distinct count of string p
 		int count = charMap.size();
-		
-		for(int left = 0, right = 0; right < s.length(); right++) {
+
+		for (int left = 0, right = 0; right < s.length(); right++) {
 			char rChar = s.charAt(right);
-			if(charMap.containsKey(rChar)) {
-				charMap.put(rChar, charMap.get(rChar)-1);
-				
-				if(charMap.get(rChar) == 0) {
+			if (charMap.containsKey(rChar)) {
+				charMap.put(rChar, charMap.get(rChar) - 1);
+
+				if (charMap.get(rChar) == 0) {
 					count--;
 				}
 			}
-			
-			while(count <= 0) {
+
+			while (count <= 0) {
 				char lChar = s.charAt(left);
-				if(charMap.containsKey(lChar)) {
-					charMap.put(lChar, charMap.get(lChar)+1);
-					
-					if(charMap.get(lChar) > 0) {
+				if (charMap.containsKey(lChar)) {
+					charMap.put(lChar, charMap.get(lChar) + 1);
+
+					if (charMap.get(lChar) > 0) {
 						count++;
 					}
 				}
-				
-				if(right - left + 1 == p.length()) {
+
+				if (right - left + 1 == p.length()) {
 					result.add(left);
 				}
 				left++;
-				
+
 			}
 		}
 		return result;
-		
+
 	}
 	
 	
-//	Sliding window approach using hash table.
+	/**
+	 * Permutation in String
+	 * 
+	 * 
+	 * Given two strings s1 and s2, write a function to return true if s2 contains
+	 * the permutation of s1. In other words, one of the first string's permutations
+	 * is the substring of the second string.
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: s1 = "ab" s2 = "eidbaooo" Output: True Explanation: s2 contains one
+	 * permutation of s1 ("ba").
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input:s1= "ab" s2 = "eidboaoo" Output: False
+	 * 
+	 * 
+	 * Constraints:
+	 * 
+	 * The input strings only contain lower case letters. The length of both given
+	 * strings is in range [1, 10,000].
+	 * 
+	 * 
+	 * 
+	 * @param s1
+	 * @param s2
+	 * @return
+	 * 
+	 * 
+	 *         Sliding window approach using hash table.
+	 */
 	public static boolean checkInclusion(String s1, String s2) {
 
+		if (s1 == null || s1.isEmpty() || s2.isEmpty() || s2 == null)
+			return false;
 
-		if( s1 == null || s1.isEmpty() || s2.isEmpty() || s2 == null) return false;
-		
 		Map<Character, Integer> charMap = new HashMap<>();
-		for(char c : s1.toCharArray()) {
-			charMap.put(c, charMap.getOrDefault(c, 0)+1);
+		for (char c : s1.toCharArray()) {
+			charMap.put(c, charMap.getOrDefault(c, 0) + 1);
 		}
-		
+
 		int count = charMap.size();
-		
-		for(int left = 0, right = 0; right < s2.length(); right ++) {
+
+		for (int left = 0, right = 0; right < s2.length(); right++) {
 			char rChar = s2.charAt(right);
-			if(charMap.containsKey(rChar)) {
-				charMap.put(rChar, charMap.get(rChar)-1);
-				
-				if(charMap.get(rChar) == 0) {
+			if (charMap.containsKey(rChar)) {
+				charMap.put(rChar, charMap.get(rChar) - 1);
+
+				if (charMap.get(rChar) == 0) {
 					count--;
 				}
 			}
-			
-			while(count <= 0) {
+
+			while (count <= 0) {
 				char lChar = s2.charAt(left);
-				if(charMap.containsKey(lChar)) {
-					charMap.put(lChar, charMap.get(lChar)+1);
-					
-					if(charMap.get(lChar) > 0) {
+				if (charMap.containsKey(lChar)) {
+					charMap.put(lChar, charMap.get(lChar) + 1);
+
+					if (charMap.get(lChar) > 0) {
 						count++;
 					}
 				}
-				
-				if(right - left + 1 == s1.length()) {
+
+				if (right - left + 1 == s1.length()) {
 					return true;
 				}
 				left++;
@@ -713,4 +1253,809 @@ public class Solution {
 	}
 	
 	
+	
+	
+	/**
+	 * Count Square Submatrices with All Ones
+	 * 
+	 * 
+	 * Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.
+	 * 
+	 * 
+	 * Example 1:
+
+	 *Input: matrix =
+	 *[
+  	 *[0,1,1,1],
+  	 *[1,1,1,1],
+  	 *[0,1,1,1]
+	 *]
+	 *Output: 15
+	 *Explanation: 
+	 *There are 10 squares of side 1.
+	 *There are 4 squares of side 2.
+	 *There is  1 square of side 3.
+	 *Total number of squares = 10 + 4 + 1 = 15.
+
+
+	 *Example 2:
+
+	 *Input: matrix = 
+	 *[
+  	 *[1,0,1],
+  	 *[1,1,0],
+  	 *[1,1,0]
+	 *]
+	 *Output: 7
+	 *Explanation: 
+	 *There are 6 squares of side 1.  
+	 *There is 1 square of side 2. 
+	 *Total number of squares = 6 + 1 = 7.
+	 *
+	 *
+	 *Constraints:
+
+	 *1 <= arr.length <= 300
+	 *1 <= arr[0].length <= 300
+	 *0 <= arr[i][j] <= 1
+	 *
+	 *
+	 *
+	 * @param matrix
+	 * @return  
+	 * 
+	 * 
+	 * |0	1	1	1|         |0	1	1	1|          
+	 * |			 |         |			 |     
+	 * |1	1	1	1|	>>>	   |1	1	2	2|
+	 * |			 |         |			 |
+	 * |0	1	1	1|         |0	1	2	3|
+	 * 
+	 * Transform given matrix such that each element in matrix represent the number of square matrix they can form including itself.
+	 */
+	public static int countSquares(int[][] matrix) {
+		
+//		result for summing up the number of square matrix at each element in matrix 
+		int result = 0;
+		int row = matrix.length;
+		int column = matrix[0].length;
+		
+		if(matrix.length == 0) return 0;
+		
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < column; j++) {
+				
+//				handling boundaries case i.e all the element from 1st row and 1st column
+//				because for these elements no neighbor will present so either they can form 1 x 1 matrix or not  
+				if(i == 0 || j ==0) {
+					result += matrix[i][j]; 
+					continue;
+				}
+				
+				if(matrix[i][j] != 0) {
+					//check left of current node >> (i, j-1)
+					//check top of current node >> (i-1, j)
+					//check diagonal of current node >> (i-1, j-1)
+					//And find minimum of all neighbor + 1(because its it self creating 1 x 1 matrix)
+					
+					matrix[i][j] += Math.min(matrix[i][j-1], Math.min(matrix[i-1][j], matrix[i-1][j-1]));
+					result += matrix[i][j];  
+				}
+				
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	
+	/** Given a m * n matrix of ones and zeros, return max length square sub-matrices of all sub-matrices have all ones.
+	 * @param matrix
+	 * @return
+	 */
+	public static int countMaxSquares(int[][] matrix) {
+		
+//		result for summing up the number of square matrix at each element in matrix 
+		int result = Integer.MIN_VALUE;
+		int row = matrix.length;
+		int column = matrix[0].length;
+		
+		if(matrix.length == 0) return 0;
+		
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < column; j++) {
+				
+//				handling boundaries case i.e all the element from 1st row and 1st column
+//				because for these elements no neighbor will present so either they can form 1 x 1 matrix or not  
+				if(i == 0 || j ==0) {
+					if(result < matrix[i][j])
+						result = matrix[i][j]; 
+					
+					continue;
+				}
+				
+				if(matrix[i][j] != 0) {
+					//check left of current node >> (i, j-1)
+					//check top of current node >> (i-1, j)
+					//check diagonal of current node >> (i-1, j-1)
+					//And find minimum of all neighbor + 1(because its it self creating 1 x 1 matrix)
+					
+					matrix[i][j] += Math.min(matrix[i][j-1], Math.min(matrix[i-1][j], matrix[i-1][j-1]));
+					if(result < matrix[i][j])
+						result = matrix[i][j];  
+				}
+				
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	
+	
+	/**
+	 * Sort Characters By Frequency Given a string, sort it in decreasing order
+	 * based on the frequency of characters. Example 1:
+	 * 
+	 * Input: "tree"
+	 * 
+	 * Output: "eert"
+	 * 
+	 * Explanation: 'e' appears twice while 'r' and 't' both appear once. So 'e'
+	 * must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: "cccaaa"
+	 * 
+	 * Output: "cccaaa"
+	 * 
+	 * Explanation: Both 'c' and 'a' appear three times, so "aaaccc" is also a valid
+	 * answer. Note that "cacaca" is incorrect, as the same characters must be
+	 * together. 
+	 * 
+	 * 
+	 * Example 3:
+	 * 
+	 * Input: "Aabb"
+	 * 
+	 * Output: "bbAa"
+	 * 
+	 * Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect. Note
+	 * that 'A' and 'a' are treated as two different characters.
+	 * 
+	 * 
+	 * 
+	 * @param s
+	 * @return
+	 * 
+	 * 
+	 * Using Hash table and in-build priority queue and passing the custom comparator to build max heap   
+	 * 
+	 * 
+	 */
+	public static String frequencySort(String s) {
+
+		Map<Character, Integer> map = new HashMap<>();
+		for(int i = 0; i < s.length(); i++) {
+			map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+		}
+		
+		PriorityQueue<Character> maxPQ = new PriorityQueue<>((a,b) -> map.get(b)-map.get(a));
+		maxPQ.addAll(map.keySet());
+		
+		StringBuilder sb = new StringBuilder();
+		while(!maxPQ.isEmpty()) {
+			char c = maxPQ.poll();
+			
+			for(int i = 0; i < map.get(c); i++) {
+				sb.append(c);
+			}
+		}
+		
+		return sb.toString();
+	}
+	
+	
+	
+	
+	public static int[][] intervalIntersection(int[][] A, int[][] B) {
+
+		List<int[]> resultList = new ArrayList<>();
+		if (A.length <= 0 || B.length <= 0)
+			return resultList.toArray(new int[0][0]);
+
+//		int[] current_array = A[0];
+
+		for (int[] array1 : A) {
+			int array1Start = array1[0];
+			int array1End = array1[1];
+
+			for (int[] array2 : B) {
+				int array2Start = array2[0];
+				int array2End = array2[1];
+
+				if (array2Start <= array1End) {
+					if (array1Start <= array2End) {
+						int[] temp = new int[2];
+						temp[0] = Math.max(array1Start, array2Start);
+						temp[1] = Math.min(array1End, array2End);
+						resultList.add(temp);
+
+					}
+				} else {
+					break;
+				}
+
+			}
+
+		}
+//		System.out.println(resultList);
+		return resultList.toArray(new int[resultList.size()][2]);
+	}
+	
+	
+
+	/**
+	 * 
+	 * Interval List Intersections
+	 * 
+	 * 
+	 * 
+	 * Given two lists of closed intervals, each list of intervals is pairwise
+	 * disjoint and in sorted order.
+	 * 
+	 * Return the intersection of these two interval lists.
+	 * 
+	 * (Formally, a closed interval [a, b] (with a <= b) denotes the set of real
+	 * numbers x with a <= x <= b. The intersection of two closed intervals is a set
+	 * of real numbers that is either empty, or can be represented as a closed
+	 * interval. For example, the intersection of [1, 3] and [2, 4] is [2, 3].)
+	 * 
+	 * 
+	 * @param A
+	 * @param B
+	 * @return
+	 * 
+	 *         Input: A = [[0,2],[5,10],[13,23],[24,25]], B =
+	 *         [[1,5],[8,12],[15,24],[25,26]]
+	 * 
+	 *         Output: [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
+	 *
+	 *
+	 *         Note:
+	 * 
+	 *         0 <= A.length < 1000 0 <= B.length < 1000 0 <= A[i].start, A[i].end,
+	 *         B[i].start, B[i].end < 10^9
+	 *
+	 * 
+	 * 
+	 */
+	public static int[][] intervalIntersectionOptimize(int[][] A, int[][] B) {
+		
+		List<int[]> resultList = new ArrayList<>();
+		if (A.length <= 0 || B.length <= 0)
+			return resultList.toArray(new int[0][0]);
+		
+		int a = 0;
+		int b = 0;
+		
+		
+		while (a < A.length && b < B.length) {
+			
+			int maxFirst = Math.max(A[a][0], B[b][0]);
+			int minSecond  = Math.min(A[a][1], B[b][1]);
+			
+			if(maxFirst <= minSecond) {
+				resultList.add(new int[] {maxFirst,minSecond});
+			}
+			if(B[b][1] >= A[a][1]) {
+				a++;
+			}
+			else if(A[a][1] >= B[b][0]) {
+				b++;
+			}
+			else {
+				
+				a++; b++;
+			}
+			
+			
+		}
+		
+		
+		return  resultList.toArray(new int[resultList.size()][2]);
+		
+		
+	}
+	
+	
+	
+	
+	/**
+	 * Uncrossed Lines
+	 * 
+	 * We write the integers of A and B (in the order they are given) on two
+	 * separate horizontal lines.
+	 * 
+	 * Now, we may draw connecting lines: a straight line connecting two numbers
+	 * A[i] and B[j] such that:
+	 * 
+	 * A[i] == B[j]; The line we draw does not intersect any other connecting
+	 * (non-horizontal) line. Note that a connecting lines cannot intersect even at
+	 * the endpoints: each number can only belong to one connecting line.
+	 * 
+	 * Return the maximum number of connecting lines we can draw in this way.
+	 * 
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * 
+	 * Input: A = [1,4,2], B = [1,2,4] Output: 2 Explanation: We can draw 2
+	 * uncrossed lines as in the diagram. We cannot draw 3 uncrossed lines, because
+	 * the line from A[1]=4 to B[2]=4 will intersect the line from A[2]=2 to B[1]=2.
+	 * Example 2:
+	 * 
+	 * Input: A = [2,5,1,2,5], B = [10,5,2,1,5,2] Output: 3 Example 3:
+	 * 
+	 * Input: A = [1,3,7,1,7,5], B = [1,9,2,5,1] Output: 2
+	 * 
+	 * 
+	 * Note:
+	 * 
+	 * 1 <= A.length <= 500 1 <= B.length <= 500 1 <= A[i], B[i] <= 2000
+	 * 
+	 * 
+	 * 
+	 * 
+	 * Approach : Longest common sub sequence problem based on dynamic programming
+	 * Because sub sequence never cross each other because its progressive way
+	 * 
+	 * 
+	 * 
+	 * example: A[] = 2, 5, 1, 2, 5 B[] = 10, 5, 2, 1, 5, 2
+	 * 
+	 * longest sub sequence are >> 5 1 2, 5 2 5, 2 5 2
+	 * 
+	 * 2 5 1 and 2 1 5 is not common sub sequence because order are different in
+	 * both and its crossing with 5 1 and 1 5
+	 * 
+	 * 
+	 * Initializing the dp[][] with one extra column and and extra row that contains
+	 * 0,0 then looking at elements from A and B.
+	 * 
+	 * 1. if A[i] == b[i] means its creating a sub sequence so dp[i][j] = 1 + best
+	 * we did excluding current match so diagonal one 2. if A[i] != b[i] so dp[i][j]
+	 * = max of current left and current top
+	 * 
+	 * 
+	 * @param A
+	 * @param B
+	 * @return
+	 */
+	public static int maxUncrossedLines(int[] A, int[] B) {
+
+		int lengthA = A.length;
+		int lengthB = B.length;
+		int[][] dp = new int[lengthA + 1][lengthB + 1];
+
+		for (int i = 1; i < lengthA + 1; i++) {
+			for (int j = 1; j < lengthB + 1; j++) {
+				if (A[i - 1] == B[j - 1]) {
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+				} else {
+					dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+				}
+			}
+		}
+
+		return dp[lengthA][lengthB];
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * Contiguous Array
+	 * 
+	 * 
+	 * Given a binary array, find the maximum length of a contiguous subarray with
+	 * equal number of 0 and 1.
+	 * 
+	 * Example 1: Input: [0,1] Output: 2 Explanation: [0, 1] is the longest
+	 * contiguous subarray with equal number of 0 and 1. 
+	 * 
+	 * 
+	 * Example 2: Input: [0,1,0]
+	 * 
+	 * Output: 2 Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray
+	 * with equal number of 0 and 1. Note: The length of the given binary array will
+	 * not exceed 50,000.
+	 * 
+	 * 
+	 * Refer: https://leetcode.com/problems/contiguous-array/solution/
+	 * 
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public static int findMaxLength(int[] nums) {
+
+		Map<Integer, Integer> countMemoization  = new HashMap<>();
+		countMemoization.put(0, -1);
+		int count = 0;
+		int maxLengthArray = 0;
+		for(int i = 0; i < nums.length; i++) {
+			if(nums[i] == 0)
+				count--;
+			else
+				count++;
+			
+//			We start traversing the array from the beginning. If at any moment, the count becomes zero, it implies that we've encountered equal number of zeros and ones from the beginning till the current index of the array(i).
+//			if(count==0)
+//				maxLengthArray = Math.max(maxLengthArray, i+1); //i + 1 because zero based index example i 3 means sub-array of size 3+1=4 or use countMemoization(0,-1) count '0' at index -1
+			
+			if(countMemoization.containsKey(count)) {
+				maxLengthArray = Math.max(maxLengthArray, i-countMemoization.get(count));
+			}
+			else
+				countMemoization.put(count, i);
+		}
+		return maxLengthArray;
+	}
+	
+	
+	
+	
+	/**
+	 * Possible Bipartition
+	 * 
+	 * 
+	 * Given a set of N people (numbered 1, 2, ..., N), we would like to split
+	 * everyone into two groups of any size.
+	 * 
+	 * Each person may dislike some other people, and they should not go into the
+	 * same group.
+	 * 
+	 * Formally, if dislikes[i] = [a, b], it means it is not allowed to put the
+	 * people numbered a and b into the same group.
+	 * 
+	 * Return true if and only if it is possible to split everyone into two groups
+	 * in this way.
+	 * 
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: N = 4, dislikes = [[1,2],[1,3],[2,4]] Output: true Explanation: group1
+	 * [1,4], group2 [2,3] 
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: N = 3, dislikes = [[1,2],[1,3],[2,3]] Output: false 
+	 * 
+	 * 
+	 * Example 3:
+	 * 
+	 * Input: N = 5, dislikes = [[1,2],[2,3],[3,4],[4,5],[1,5]] Output: false
+	 * 
+	 * 
+	 * Note:
+	 * 
+	 * 1 <= N <= 2000 0 <= dislikes.length <= 10000 1 <= dislikes[i][j] <= N
+	 * dislikes[i][0] < dislikes[i][1] There does not exist i != j for which
+	 * dislikes[i] == dislikes[j].
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param N
+	 * @param dislikes
+	 * @return
+	 * 
+	 * 
+	 * Will solve this using Bipartition graph using BFS concept
+	 * 
+	 */
+	public static boolean possibleBipartition(int N, int[][] dislikes) {
+
+		List<Integer>[] graph = constructGraph(N, dislikes);
+
+		return bfs(N, graph);
+	}
+
+	
+	
+	private static boolean bfs(int N, List<Integer>[] graph) {
+		
+		int[] colors = new int[N];  //default value 0 means unvisited Node of graph 1 = group1 and -1 = group2 
+		for(int i = 0; i < N; i++) {
+			if(colors[i] !=0)
+				continue; // colors[i] !=0 means its already colored
+			
+			colors[i] = 1;
+			Queue<Integer> queue = new LinkedList<>();
+			queue.add(i);
+			
+			while(!queue.isEmpty()) {
+				int currentVertex = queue.poll();
+				
+				List<Integer> adjsentVertices = graph[currentVertex];
+				for(int adjVertex : adjsentVertices) {
+					if(colors[adjVertex] == colors[currentVertex])
+						return false;
+					
+					if(colors[adjVertex] ==0) {
+						colors[adjVertex] = -colors[currentVertex];
+						queue.add(adjVertex);
+					}
+						
+				}
+			}
+		}
+		
+		
+		return true;
+	}
+
+//	build graph with N vertices and edges
+	private static List<Integer>[] constructGraph(int N, int[][] edges) {
+
+		List<Integer>[] graph = new ArrayList[N];
+
+		for (int i = 0; i < N; i++) {
+			graph[i] = new ArrayList<>();
+		}
+
+		for (int[] edge : edges) {
+			int u = edge[0] - 1; // -1 as its zero based if its [1,2] it will treat as [0,1]
+			int v = edge[1] - 1;
+
+//			Added bi-directional mapping as 1 dislike 2 so 2 also dislike 1,
+			graph[u].add(v);
+			graph[v].add(u);
+		}
+
+		return graph;
+	}
+	
+	
+	/**
+	 * 
+	 * Counting Bits
+	 * 
+	 * 
+	 * Given a non negative integer number num. For every numbers i in the range 0 ≤
+	 * i ≤ num calculate the number of 1's in their binary representation and return
+	 * them as an array.
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: 2 Output: [0,1,1] 
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: 5 Output: [0,1,1,2,1,2] Follow up:
+	 * 
+	 * It is very easy to come up with a solution with run time
+	 * O(n*sizeof(integer)). But can you do it in linear time O(n) /possibly in a
+	 * single pass? Space complexity should be O(n). Can you do it like a boss? Do
+	 * it without using any builtin function like __builtin_popcount in c++ or in
+	 * any other language.
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * Solution odd even 1's count with Dynamic programming lookup Time complexity O(N)
+	 * 
+	 * 1 > 1 > 1 
+	 * 2 > 10 > 1
+	 * 3 > 11 > 2
+	 * 4 > 100 > 1
+	 * 5 > 101 > 2
+	 * 6 > 110 > 2
+	 * 7 > 111 > 3
+	 * 8 > 1000 > 1
+	 * 9 > 1001 > 2
+	 * 10 > 1010 > 2
+	 * 
+	 * so for odd "i" the set bit is =  set bit of i/2 + 1 
+	 * and for even "i" the set bit is = set bit of i/2 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param num
+	 * @return
+	 * 
+	 * 
+	 */
+	public int[] countBits(int num) {
+
+		int[] dp = new int[num+1]; // we are using this dp array for lookup previous value also as we processing further
+		
+		for(int i = 0; i <= num; i++) {
+			if(i % 2 == 0) {
+				dp[i] = dp[i/2]; 
+			}
+			else {
+				dp[i] = dp[i/2]+1;
+			}
+		}
+		
+		return dp;
+		
+	}
+	
+	
+	
+	
+	/**
+	 * K Closest Points to Origin
+	 * 
+	 * 
+	 * We have a list of points on the plane. Find the K closest points to the
+	 * origin (0, 0).
+	 * 
+	 * (Here, the distance between two points on a plane is the Euclidean distance.)
+	 * 
+	 * You may return the answer in any order. The answer is guaranteed to be unique
+	 * (except for the order that it is in.)
+	 * 
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: points = [[1,3],[-2,2]], K = 1 Output: [[-2,2]] Explanation: The
+	 * distance between (1, 3) and the origin is sqrt(10). The distance between (-2,
+	 * 2) and the origin is sqrt(8). Since sqrt(8) < sqrt(10), (-2, 2) is closer to
+	 * the origin. We only want the closest K = 1 points from the origin, so the
+	 * answer is just [[-2,2]].
+	 * 
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: points = [[3,3],[5,-1],[-2,4]], K = 2 Output: [[3,3],[-2,4]] (The
+	 * answer [[-2,4],[3,3]] would also be accepted.)
+	 * 
+	 * 
+	 * 
+	 * Note:
+	 * 
+	 * 1 <= K <= points.length <= 10000 -10000 < points[i][0] < 10000 -10000 <
+	 * points[i][1] < 10000
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param points
+	 * @param K
+	 * @return
+	 */
+	public int[][] kClosest(int[][] points, int K) {
+
+		Map<Double, ArrayList<Integer>> pointTodistance = new HashMap<>();
+		int[][] result = new int[K][2];
+		
+		for(int i = 0 ; i< points.length; i++) {
+			double value  = Math.sqrt(points[i][0] * points[i][0] + points[i][1] * points[i][1]);
+			
+			if(pointTodistance.containsKey(value)) {
+				ArrayList<Integer> pointList = pointTodistance.get(value);
+				pointList.add(i);
+				pointTodistance.put(value, pointList);
+			}
+			else {
+				ArrayList<Integer> pointList = new ArrayList<>();
+				pointList.add(i);
+				pointTodistance.put(value, pointList);
+			}
+			
+		}
+		
+		PriorityQueue<Double> minHeapPriority = new PriorityQueue<>();
+		minHeapPriority.addAll(pointTodistance.keySet());
+		
+		int count = 0;
+		while(!minHeapPriority.isEmpty() && count != K) {
+			ArrayList<Integer> closestPointList = pointTodistance.get(minHeapPriority.poll());
+			for(int point : closestPointList) {
+				result[count++] = points[point]; 
+			}
+			
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * Edit Distance
+	 * 
+	 * 
+	 * Given two words word1 and word2, find the minimum number of operations
+	 * required to convert word1 to word2.
+	 * 
+	 * You have the following 3 operations permitted on a word:
+	 * 
+	 * Insert a character Delete a character Replace a character 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: word1 = "horse", word2 = "ros" Output: 3 Explanation: horse -> rorse
+	 * (replace 'h' with 'r') rorse -> rose (remove 'r') rose -> ros (remove 'e')
+	 * 
+	 * 
+	 * 
+	 * 
+	 * Example 2:
+	 * 
+	 * Input: word1 = "intention", word2 = "execution" Output: 5 Explanation:
+	 * intention -> inention (remove 't') inention -> enention (replace 'i' with
+	 * 'e') enention -> exention (replace 'n' with 'x') exention -> exection
+	 * (replace 'n' with 'c') exection -> execution (insert 'u')
+	 * 
+	 * 
+	 * 
+	 * Refer : https://www.youtube.com/watch?v=We3YDTzNXEk
+	 * 
+	 * 
+	 * 
+	 * @param word1
+	 * @param word2
+	 * @return
+	 */
+	public static int minDistance(String word1, String word2) {
+
+		int word1L = word1.length();
+		int word2L = word2.length();
+		
+		int[][] dp = new int[word2L+1][word1L+1];
+		
+		for(int i = 0; i < word1L+1; i++) {
+			dp[0][i] = i;
+		}
+		
+		for(int j = 0; j < word2L+1; j++) {
+			dp[j][0] = j;
+		}
+		
+		
+		for(int i = 1; i < word2L+1; i++) {
+			for(int j = 1; j < word1L+1; j++) {
+				if(word2.charAt(i-1) == word1.charAt(j-1)) {
+					dp[i][j] = dp[i-1][j-1];
+				}
+				else {
+					dp[i][j] = Math.min(dp[i-1][j-1], Math.min(dp[i][j-1], dp[i-1][j]))+1;
+				}
+			}
+		}
+		
+		return dp[word2L][word1L];
+	}
+	
+	
 }
+
+
+
