@@ -1,5 +1,5 @@
 package design.pattern.decorator;
 
 public interface ChristmasTree {
-	String decorate();
+	public String decorate();
 }

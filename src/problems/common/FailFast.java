@@ -17,7 +17,8 @@ public class FailFast {
 	        Iterator<Integer> itr = al.iterator();
 	        while (itr.hasNext()) {
 	            if (itr.next() == 2) {
-	                // will not throw Exception if using method of iterator
+	                // will not throw Exception if we are modifying the structure 
+	            	//by using method of iterator
 	                itr.remove();
 	            }
 	        }

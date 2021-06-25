@@ -1,5 +1,6 @@
 package problems.common;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AllSubString {
@@ -23,6 +24,7 @@ public class AllSubString {
 				all.add(sb.toString());
 			}
 		}
+		HashMap<String, String> map = new HashMap<>();
 		return all;
 	}
 }

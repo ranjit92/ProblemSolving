@@ -1,5 +1,7 @@
 package problems.common;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -32,5 +34,29 @@ public class FailSafe {
 
 		}
 
+		System.out.println("-------------------------");
+		callConcurrentMap();
 	}
+
+	private static void callConcurrentMap() {
+		
+		Map<Integer, Integer> map = new ConcurrentHashMap<>();
+		map.put(1, 0);
+		map.put(2, 1);
+		map.put(3, 2);
+		
+		Iterator<Integer> it = map.keySet().iterator();
+		
+		while(it.hasNext()) {
+			int i = it.next();
+			System.out.println(i);
+			if(i == 2)
+				map.put(4, 3); // ConcurrentHashMap dosent work on copy thats why we can see that 4 is getting printed here
+			
+		}
+		
+	}
+	
+	
+	
 }
