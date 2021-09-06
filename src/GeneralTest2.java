@@ -1,20 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test2 {
+public class GeneralTest2 {
 
-	private static Test2 test2;
+	private static GeneralTest2 test2;
 	
-	private Test2(){
+	private GeneralTest2(){
 		
 	}
 	
-	public static Test2 getInstance() {
+	public static GeneralTest2 getInstance() {
 		
 		if(test2 == null) {
-			synchronized (Test2.class) {
+			synchronized (GeneralTest2.class) {
 				if(test2 == null) {
-					test2 = new Test2();
+					test2 = new GeneralTest2();
 					return test2;
 				}
 			}

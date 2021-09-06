@@ -1,6 +1,6 @@
 package problems.general;
 
-public class Test1 {
+public class FloatTest1 {
 	public static void main(String[] args) {
 		int a = 40;
 		long b = 10L;
