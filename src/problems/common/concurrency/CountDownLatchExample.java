@@ -35,6 +35,7 @@ class DependentTask implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println(Thread.currentThread().getName() + " Completes");
 		cd.countDown();
 	}
 

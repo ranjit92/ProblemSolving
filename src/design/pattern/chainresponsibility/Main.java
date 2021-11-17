@@ -5,7 +5,10 @@ public class Main {
 		AuthenticationProcessor processor = new UsernamePasswordProcessor(new OAuthProcessor(null));
 		
 		System.out.println(processor.isAuthorized(new UsernamePasswordProvider()));
+
 		System.out.println(processor.isAuthorized(new FakeProvider()));
+
+		System.out.println(processor.isAuthorized(new OAuthTokenProvider()));
 		
 	}
 

@@ -19,7 +19,7 @@ public class JoinExample{
 	}
 	
 	static Runnable runnable = () ->{
-		for(int i=0; i< 5; i++) {
+		for(int i=0; i< 3; i++) {
 			System.out.println(Thread.currentThread().getName() +" >> "+i);
 		}
 		try {

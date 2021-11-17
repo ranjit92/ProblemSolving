@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MyBlockingQueueWithLockAndCondition<E>  extends MyBlockingQueue<E>{
+public class MyBlockingQueueWithLockAndCondition<Arko>  extends MyBlockingQueue<Arko>{
 	
 	private Lock lock = new ReentrantLock(true); 
 	private Condition notEmpty = lock.newCondition();
@@ -14,7 +14,7 @@ public class MyBlockingQueueWithLockAndCondition<E>  extends MyBlockingQueue<E>{
 		super(size);
 	}
 	
-	public void put(E e) throws InterruptedException {
+	public void put(Arko e) throws InterruptedException {
 		lock.lock();
 		try {
 			while(q.size() == max) {
@@ -28,14 +28,14 @@ public class MyBlockingQueueWithLockAndCondition<E>  extends MyBlockingQueue<E>{
 		}
 	}
 	
-	public E take() throws InterruptedException {
+	public Arko take() throws InterruptedException {
 		lock.lock();
 		try {
 			while(q.isEmpty()) {
 				notEmpty.await();
 			}
 			
-			E ele = q.poll();
+			Arko ele = q.poll();
 			notFull.signalAll();
 			return ele;
 		}

@@ -14,6 +14,7 @@ public class CyclicBarrierExample {
 		es.submit(new Task(cd));
 		es.submit(new Task(cd));
 		es.submit(new Task(cd));
+		es.shutdown();
 		System.out.println("I am not waiting");
 	}
 }
@@ -37,8 +38,5 @@ class Task implements Runnable {
 			}
 			System.out.println("All three parties arrive at barrier :"+Thread.currentThread().getName());
 		}
-		
-		
 	}
-
 }

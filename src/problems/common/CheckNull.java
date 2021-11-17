@@ -11,14 +11,16 @@ import javax.print.attribute.HashAttributeSet;
 public class CheckNull {
 
 	public static void main(String[] args) {
-		call(null);
-		Map<String, Integer> map = new HashMap<>();
-		map.put("key1", 300);
-		map.put("key2", 100);
-		map.put("key3", 300);
-		map.put("key4", 400);
-		map.put("key2", 500);
-		map.put(null, 100);
+		//call(null);
+		int i=0;
+		Map<Integer, Integer> map = new HashMap<>();
+		map.put(i++, 0);
+//		map.put("key1", 300);
+//		map.put("key2", 100);
+//		map.put("key3", 300);
+//		map.put("key4", 400);
+//		map.put("key2", 500);
+//		map.put(null, 100);
 
 		System.out.println(map);
 		Set<Integer> set = new LinkedHashSet<>();

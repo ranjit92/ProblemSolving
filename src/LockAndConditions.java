@@ -22,7 +22,7 @@ public class LockAndConditions {
 				queueFull.wait();
 			}
 			
-			queue.add(e)
+			//queue.add(e)
 			queueimpty.notifyAll();
 		}
 		catch(Exception e){

@@ -37,9 +37,7 @@ public class User {
 	public String address() {
 		return this.address;
 	}
-	
 
-	
 	public static class UserBuilder {
 		private final String firstName;
 		private final String lastName;

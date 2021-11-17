@@ -10,8 +10,8 @@ public class ProducerConsumer {
 //		BlockingQueue<Integer> bq = new ArrayBlockingQueue<>(10);
 		
 //		use own Blocking queue implementation.
-//		MyBlockingQueue<Integer> mbq = new MyBlockingQueueWithLockAndCondition<>(10);
-		MyBlockingQueue<Integer> mbq = new MyBlockingQueueWithWaitAndNotify<>(10);
+		MyBlockingQueue<Integer> mbq = new MyBlockingQueueWithLockAndCondition<>(10);
+//		MyBlockingQueue<Integer> mbq = new MyBlockingQueueWithWaitAndNotify<>(10);
 		
 		final Runnable producer = () ->{
 			while(true) {
@@ -23,10 +23,7 @@ public class ProducerConsumer {
 				}
 			}
 		};
-		
-		new Thread(producer).start();
-		new Thread(producer).start();
-		
+
 		final Runnable consumer = () ->{
 			while(true) {
 				try {
@@ -37,7 +34,9 @@ public class ProducerConsumer {
 				}
 			}
 		};
-		
+
+		new Thread(producer).start();
+		new Thread(producer).start();
 		new Thread(consumer).start();
 		new Thread(consumer).start();
 	}

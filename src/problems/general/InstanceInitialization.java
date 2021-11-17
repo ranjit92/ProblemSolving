@@ -1,11 +1,12 @@
 package problems.general;
 
 public class InstanceInitialization {
-	{
-		System.out.println("print block2");
-	}
+
 	{
 		System.out.println("print block");
+	}
+	{
+		System.out.println("print block2");
 	}
 	
 	static {
@@ -17,7 +18,7 @@ public class InstanceInitialization {
 	}
 
 	public static void main(String[] args) {
-		 InstanceInitialization a_ = new InstanceInitialization("From constroctor ");
+		 InstanceInitialization a_ = new InstanceInitialization("From constructor ");
 	}
 	
 }

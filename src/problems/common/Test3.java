@@ -5,8 +5,8 @@ public class Test3 {
 	
 }
 
-public class A {
-A() {
+class AAA {
+AAA() {
 print();
 }
 public void print() {
@@ -15,12 +15,12 @@ System.out.println("Inside A");
 }
 
 
-class B extends A {
+class BBB extends AAA {
 int x = 10;
-B() {
+BBB() {
 print();
 }
-protected void print() {
+public void print() {
 System.out.println("Inside B");
 }
 }
@@ -29,7 +29,7 @@ System.out.println("Inside B");
 class DriverTest {
 public static void main(String args[]) {
 
-A a = new B();
+AAA a = new BBB();
 //System.out.println(a.x);
 
 }

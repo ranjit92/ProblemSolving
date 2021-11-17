@@ -1,16 +1,16 @@
 package lld.cache;
 
-public class Cache<K,V> {
+public class Cache<Key, Value> {
 
-	private EvictionPolicy<K> evictionPolicy;
-	private Storage<K,V> storage;
+	private EvictionPolicy<Key> evictionPolicy;
+	private Storage<Key, Value> storage;
 	
-	public Cache(EvictionPolicy<K> evictionPolicy, Storage<K,V> storage) {
+	public Cache(EvictionPolicy<Key> evictionPolicy, Storage<Key, Value> storage) {
 		this.evictionPolicy = evictionPolicy;
 		this.storage = storage;
 	}
 	
-	public void put(K k, V v) {
+	public void put(Key k, Value v) {
 		
 		try {
 			storage.add(k, v);
@@ -18,15 +18,15 @@ public class Cache<K,V> {
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
-			K key = evictionPolicy.evictKey();
+			Key key = evictionPolicy.evictKey();
 			storage.remove(key);
 			put(k,v);
 		}
 	}
 	
-	public V get(K k) {
+	public Value get(Key k) {
 		
-		V value = storage.get(k);
+		Value value = storage.get(k);
 		evictionPolicy.keyAccessed(k);
 		if(value == null) {
 			System.out.println("Key not found");

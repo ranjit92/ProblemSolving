@@ -19,13 +19,4 @@ public class Singleton {
 		}
 		return singleton;
 	}
-
-	/*
-	 * public static synchronized Singleton getInstance2() {
-	 * 
-	 * if (singleton == null) { singleton = new Singleton(); }
-	 * 
-	 * return singleton; }
-	 */
-
 }

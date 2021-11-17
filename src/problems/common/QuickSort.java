@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class QuickSort {
 
 	public static void main(String[] args) {
-		int[] arr = new int[] {7,2,1,6,8,5,3,4};
+		int[] arr = new int[] {7,2,1,1,6,8,5,3,4};
 		//partation(arr, 0, 7);
 		quicksort(arr, 0, arr.length-1);
 		Arrays.stream(arr).forEach(System.out::println);
