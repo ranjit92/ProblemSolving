@@ -1,11 +1,6 @@
 package problems.common.streams;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ObjectStreams {
@@ -16,7 +11,7 @@ public class ObjectStreams {
 		
 		Map<String, Integer> map = getInit2();
 		
-		map.entrySet().stream().sorted((e1,e2) -> e1.getValue()-e2.getValue())
+		map.entrySet().stream().sorted(Comparator.comparingInt(Map.Entry::getValue))
 						.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1,e2)-> e1, LinkedHashMap::new));
 		
 		
