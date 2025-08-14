@@ -13,7 +13,7 @@ public class DellProblem2 {
 		String s = "mynameistest";
 		Set<Character> set = new LinkedHashSet<>();
 		
-		for(int i=0; i<s.length(); i++) {
+		for(int i=0; i <s.length(); i++) {
 			set.add(s.charAt(i));
 		}
 		
