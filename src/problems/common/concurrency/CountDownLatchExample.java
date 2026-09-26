@@ -10,6 +10,7 @@ public class CountDownLatchExample {
 		CountDownLatch cd = new CountDownLatch(3);
 
 		es.submit(new DependentTask(cd));
+
 		es.submit(new DependentTask(cd));
 		es.submit(new DependentTask(cd));
 
